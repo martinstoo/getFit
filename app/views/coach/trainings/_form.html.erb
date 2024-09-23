@@ -1,0 +1,32 @@
+<%= form_with(model: coach_training) do |form| %>
+  <% if coach_training.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(coach_training.errors.count, "error") %> prohibited this coach_training from being saved:</h2>
+
+      <ul>
+        <% coach_training.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :title, style: "display: block" %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div>
+    <%= form.label :description, style: "display: block" %>
+    <%= form.text_area :description %>
+  </div>
+
+  <div>
+    <%= form.label :benutzer_id, style: "display: block" %>
+    <%= form.text_field :benutzer_id %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
