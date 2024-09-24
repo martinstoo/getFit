@@ -1,2 +1,19 @@
-<h1>Student::Trainings#index</h1>
-<p>Find me in app/views/student/trainings/index.html.erb</p>
+<h1>Available Trainings</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Description</th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @trainings.each do |training| %>
+      <tr>
+        <td><%= training.title %></td>
+        <td><%= training.description %></td>
+        <td><%= link_to 'View', student_training_path(training), class: 'btn btn-info' %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

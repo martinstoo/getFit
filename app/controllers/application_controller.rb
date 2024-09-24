@@ -8,7 +8,7 @@ class ApplicationController < ActionController::Base
     devise_parameter_sanitizer.permit(:account_update, keys: [:role])
   end
   def record_not_found
-    flash[:alert] = ‘Record not found.’
+    flash[:alert] = 'Record not found.'
     redirect_to root_path
   end
 end
