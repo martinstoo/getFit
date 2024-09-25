@@ -6,7 +6,6 @@ Rails.application.routes.draw do
     resources :trainings
   end
   devise_for :benutzers
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.
@@ -17,7 +16,5 @@ Rails.application.routes.draw do
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
   
   root "home#index"
-  get "home/index"
-  # Defines the root path route ("/")
-  # root "posts#index"
+  # get "home/index"
 end

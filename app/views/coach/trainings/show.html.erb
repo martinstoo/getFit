@@ -1,10 +1,10 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @coach_training %>
+<%= render @training %>
 
 <div>
-  <%= link_to "Edit this training", edit_coach_training_path(@coach_training) %> |
+  <%= link_to "Edit this training", edit_coach_training_path(@training) %> |
   <%= link_to "Back to trainings", coach_trainings_path %>
-
-  <%= button_to "Destroy this training", @coach_training, method: :delete %>
+  
+  <%= button_to "Destroy this training", coach_training_path(@training), method: :delete, data: { confirm: "Are you sure?" } %>
 </div>

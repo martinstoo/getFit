@@ -2,7 +2,7 @@ require "application_system_test_case"
 
 class Coach::TrainingsTest < ApplicationSystemTestCase
   setup do
-    @coach_training = coach_trainings(:one)
+    @training = coach_trainings(:one)
   end
 
   test "visiting the index" do
@@ -14,9 +14,9 @@ class Coach::TrainingsTest < ApplicationSystemTestCase
     visit coach_trainings_url
     click_on "New training"
 
-    fill_in "Benutzer", with: @coach_training.benutzer_id
-    fill_in "Description", with: @coach_training.description
-    fill_in "Title", with: @coach_training.title
+    fill_in "Benutzer", with: @training.benutzer_id
+    fill_in "Description", with: @training.description
+    fill_in "Title", with: @training.title
     click_on "Create Training"
 
     assert_text "Training was successfully created"
@@ -24,12 +24,12 @@ class Coach::TrainingsTest < ApplicationSystemTestCase
   end
 
   test "should update Training" do
-    visit coach_training_url(@coach_training)
+    visit coach_training_url(@training)
     click_on "Edit this training", match: :first
 
-    fill_in "Benutzer", with: @coach_training.benutzer_id
-    fill_in "Description", with: @coach_training.description
-    fill_in "Title", with: @coach_training.title
+    fill_in "Benutzer", with: @training.benutzer_id
+    fill_in "Description", with: @training.description
+    fill_in "Title", with: @training.title
     click_on "Update Training"
 
     assert_text "Training was successfully updated"
@@ -37,7 +37,7 @@ class Coach::TrainingsTest < ApplicationSystemTestCase
   end
 
   test "should destroy Training" do
-    visit coach_training_url(@coach_training)
+    visit coach_training_url(@training)
     click_on "Destroy this training", match: :first
 
     assert_text "Training was successfully destroyed"

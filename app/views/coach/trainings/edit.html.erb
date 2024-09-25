@@ -2,11 +2,11 @@
 
 <h1>Editing training</h1>
 
-<%= render "form", coach_training: @coach_training %>
+<%= render "form", coach_training: @training %>
 
 <br>
 
 <div>
-  <%= link_to "Show this training", @coach_training %> |
+  <%= link_to "Show this training", coach_training_path(@training) %> |
   <%= link_to "Back to trainings", coach_trainings_path %>
 </div>
