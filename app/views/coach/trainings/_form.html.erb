@@ -1,11 +1,10 @@
-<%= form_with(model: coach_training) do |form| %>
-  <% if coach_training.errors.any? %>
+<%= form_with(model: @training, url: @training.new_record? ? coach_trainings_path : coach_training_path(@training)) do |form| %>
+  <% if @training.errors.any? %>
     <div style="color: red">
-      <h2><%= pluralize(coach_training.errors.count, "error") %> prohibited this coach_training from being saved:</h2>
-
+      <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
       <ul>
-        <% coach_training.errors.each do |error| %>
-          <li><%= error.full_message %></li>
+        <% @training.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
         <% end %>
       </ul>
     </div>

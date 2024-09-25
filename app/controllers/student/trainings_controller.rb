@@ -7,7 +7,7 @@ module Student
     end
     def show
       
-  @flamingo_training_bot = Training.find(params[:id])
+  @training = Training.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to student_trainings_path, alert: 'Training not found.'
     end
