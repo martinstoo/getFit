@@ -1,17 +1,7 @@
-<div id="<%= dom_id training %>">
-  <p>
-    <strong>Title:</strong>
-    <%= training.title %>
-  </p>
-
-  <p>
-    <strong>Description:</strong>
-    <%= training.description %>
-  </p>
-
-  <p>
-    <strong>Benutzer:</strong>
-    <%= training.benutzer_id %>
-  </p>
-
+<div id="<%= dom_id training %>" class="card mb-4">
+  <div class="card-body">
+    <h5 class="card-title"><%= training.title %></h5>
+    <p class="card-text"><%= training.description %></p>
+    <p class="card-text"><small class="text-muted">Benutzer: <%= training.benutzer_id %></small></p>
+  </div>
 </div>

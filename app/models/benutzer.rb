@@ -5,6 +5,7 @@ class Benutzer < ApplicationRecord
          :recoverable, :rememberable, :validatable, :timeoutable
 
   has_many :trainings, dependent: :destroy
+  has_many :uebungs, dependent: :destroy
   validates :role, presence: true, inclusion: { in: %w[coach student] }
   def coach?
     role == 'coach'

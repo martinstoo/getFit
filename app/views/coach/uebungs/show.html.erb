@@ -1,0 +1,19 @@
+<div class="container">
+  <h1>Übung: <%= @uebung.title %></h1>
+
+  <div class="button-group mt-4">
+    <%= link_to 'Zurück zum Übungen', coach_uebungs_path, class: 'btn btn-primary' %>
+  </div>
+
+  <div class="card">
+    <div class="card-body">
+      <h5 class="card-title">Description</h5>
+      <p class="card-text"><%= @uebung.description %></p>
+    </div>
+  </div>
+
+  <div class="button-group mt-4">
+    <%= link_to 'Edit this Übung', edit_coach_uebung_path(@uebung), class: 'btn btn-warning' %>
+    <%= button_to 'Destroy this Übung', coach_uebung_path(@uebung), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+  </div>
+</div>

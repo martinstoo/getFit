@@ -1,10 +1,16 @@
-<p style="color: green"><%= notice %></p>
+<div class="container">
+  <% if notice %>
+    <p class="notice"><%= notice %></p>
+  <% end %>
 
-<%= render @training %>
+  <div class="button-group mt-4">
+    <%= link_to 'Back to uebungen', coach_uebungs_path, class: 'btn btn-primary' %>
+  </div>
 
-<div>
-  <%= link_to "Edit this training", edit_coach_training_path(@training) %> |
-  <%= link_to "Back to trainings", coach_trainings_path %>
+  <%= render @training %>
   
-  <%= button_to "Destroy this training", coach_training_path(@training), method: :delete, data: { confirm: "Are you sure?" } %>
+  <div class="button-group mt-4">
+    <%= link_to "Edit this training", edit_coach_training_path(@training), class: 'btn btn-warning' %>
+    <%= button_to "Destroy this training", coach_training_path(@training), method: :delete, data: { confirm: "Are you sure?" }, class: 'btn btn-danger' %>
+  </div>
 </div>

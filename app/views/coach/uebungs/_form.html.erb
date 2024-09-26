@@ -1,9 +1,9 @@
-<%= form_with(model: @training, url: @training.new_record? ? coach_trainings_path : coach_training_path(@training), class: 'form') do |form| %>
-  <% if @training.errors.any? %>
+<%= form_with(model: @uebung, url: @uebung.new_record? ? coach_uebungs_path : coach_uebung_path(@uebung), class: 'form') do |form| %>
+  <% if @uebung.errors.any? %>
     <div class="alert alert-danger">
-      <h2><%= pluralize(@training.errors.count, "error") %> prohibited this training from being saved:</h2>
+      <h2><%= pluralize(@uebung.errors.count, "error") %> prohibited this Übung from being saved:</h2>
       <ul>
-        <% @training.errors.full_messages.each do |message| %>
+        <% @uebung.errors.full_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
       </ul>
@@ -18,11 +18,6 @@
   <div class="form-group">
     <%= form.label :description %>
     <%= form.text_area :description, class: 'form-control' %>
-  </div>
-
-  <div class="form-group">
-    <%= form.label :benutzer_id %>
-    <%= form.text_field :benutzer_id, class: 'form-control' %>
   </div>
 
   <div class="form-group">
