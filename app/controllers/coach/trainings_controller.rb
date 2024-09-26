@@ -8,7 +8,9 @@ module Coach
     end
 
     def show
+      @training = Training.find(params[:id])
     end
+    
     
     def new
       @training = current_benutzer.trainings.build
