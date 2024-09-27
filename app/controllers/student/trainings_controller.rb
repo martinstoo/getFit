@@ -10,6 +10,7 @@ module Student
   @training = Training.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to student_trainings_path, alert: 'Training not found.'
+      Rails.logger.info "Training nicht gefunden"
     end
     
     private
@@ -17,6 +18,7 @@ module Student
     def require_student
       unless current_benutzer.student?
         redirect_to root_path, alert: 'Access Denied.'
+        Rails.logger.info "Sie haben keinen Zugriff"
       end
     end
   end

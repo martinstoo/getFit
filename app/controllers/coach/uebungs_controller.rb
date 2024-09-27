@@ -19,6 +19,7 @@ module Coach
       @uebung = current_benutzer.uebungs.build(uebung_params)
       if @uebung.save
         redirect_to coach_uebungs_path, notice: 'Uebung was successfully created.'
+        Rails.logger.info "Neues Übung wurde erstellt"
       else
         render :new
       end
@@ -30,6 +31,7 @@ module Coach
     def update
       if @uebung.update(uebung_params)
         redirect_to coach_uebungs_path, notice: 'Uebung was successfully updated.'
+      Rails.logger.info "Übung wurde aktualisiert"
       else
         render :edit
       end
@@ -37,7 +39,8 @@ module Coach
 
     def destroy
       @uebung.destroy
-      redirect_to coach_uebungs_path, notice: 'Uebung was successfully destroyed.'
+      redirect_to coach_uebungs_path, notice: 'Übung was successfully destroyed.'
+      Rails.logger.info "Übung wurde gelöscht"
     end
 
     private
@@ -45,13 +48,15 @@ module Coach
     def require_coach
       unless current_benutzer.coach?
         redirect_to root_path, alert: 'Access Denied.'
+        Rails.logger.info "Sie haben keinen Zugriff"
       end
     end
 
     def set_uebung
       @uebung = current_benutzer.uebungs.find(params[:id])
     rescue ActiveRecord::RecordNotFound
-      redirect_to coach_uebungs_path, alert: 'Uebung not found.'
+      redirect_to coach_uebungs_path, alert: 'Übung not found.'
+      Rails.logger.info "Übung nicht gefunden"
     end
 
     def uebung_params

@@ -20,6 +20,7 @@ module Coach
       @training = current_benutzer.trainings.build(training_params)
       if @training.save 
         redirect_to coach_trainings_path, notice: 'Training was successfully created.'
+        Rails.logger.info "Neues Training wurde erstellt"
       else
         render :new
       end
@@ -31,6 +32,7 @@ module Coach
     def update
       if @training.update(training_params)
         redirect_to coach_trainings_path, notice: 'Training was successfully updated.'
+        Rails.logger.info "Training wurde aktualisiert"
       else
         render :edit
       end
@@ -39,6 +41,7 @@ module Coach
     def destroy
       @training.destroy
       redirect_to coach_trainings_path, notice: 'Training was successfully destroyed.'
+      Rails.logger.info "Training wurde gelöscht"
     end
   
     private
@@ -46,6 +49,7 @@ module Coach
     def require_coach
       unless current_benutzer.coach?
         redirect_to root_path, alert: 'Access Denied.'
+        Rails.logger.info "Sie haben keinen Zugriff"
       end
     end
   
@@ -53,6 +57,7 @@ module Coach
       @training = current_benutzer.trainings.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to coach_trainings_path, alert: 'Training not found.'
+      Rails.logger.info "Training nicht gefunden"
     end
     def training_params
       params.require(:training).permit(:title, :description)
