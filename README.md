@@ -1,24 +1,44 @@
-# README
+# getFit
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Willkommen! 
+getFit, der innovativen Fitness-App, die Coaches und Trainierende zusammenbringt! Coaches können hier ganz einfach individuelle Trainingspläne erstellen und zur Verfügung stellen. Trainierende haben direkten Zugriff auf unterschiedliche Trainings, um ihre Fitnessziele effektiv zu erreichen. Egal ob Anfänger oder Profi – getFit unterstützt dich auf deinem Weg zu mehr Fitness und ein gesundes Leben!
 
-Things you may want to cover:
 
-* Ruby version
+## Short Technical Description
+This is a Ruby on Rails application that manages training and exercise sessions for users. It supports three types of users: Admin, Coach, and Student. Admins can manage all resources, while Coaches and Students have restricted access to their own resources.
 
-* System dependencies
+## Technologies Used
 
-* Configuration
+- Ruby on Rails
+- Devise
+- RSpec
+- SQLite3
 
-* Database creation
+## Installation
 
-* Database initialization
+To get started with this application, follow these steps:
 
-* How to run the test suite
+1. **Clone the repository:**
 
-* Services (job queues, cache servers, search engines, etc.)
+   ```bash
+   git clone https://github.com/martinstoo/getFit.git
+   cd getFit
 
-* Deployment instructions
+2. **Install Gems**
+   
+   ```bash
+   bundle install
 
-* ...
+3. **Create and migrate database**
+   
+   ```bash
+   rails db:create
+   rails db:migrate
+   
+3. **Run server**
+    ```bash
+   rails server
+
+4. **Testing**
+   ```bash
+   bundles exec rspec
