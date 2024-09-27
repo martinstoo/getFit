@@ -1,14 +1,15 @@
+
 module Coach
   class UebungsController < ApplicationController
     before_action :authenticate_benutzer!
     before_action :require_coach
     before_action :set_uebung, only: %i[show edit update destroy]
+
     def index
       @uebungs = current_benutzer.uebungs
     end
 
     def show
-      @uebung = Uebung.find(params[:id])
     end
 
     def new
@@ -31,7 +32,7 @@ module Coach
     def update
       if @uebung.update(uebung_params)
         redirect_to coach_uebungs_path, notice: 'Uebung was successfully updated.'
-      Rails.logger.info "Übung wurde aktualisiert"
+        Rails.logger.info "Übung wurde aktualisiert"
       else
         render :edit
       end

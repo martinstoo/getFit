@@ -3,19 +3,18 @@ module Coach
     before_action :authenticate_benutzer!
     before_action :require_coach
     before_action :set_training, only: %i[show edit update destroy]
+
     def index
       @trainings = current_benutzer.trainings
     end
 
     def show
-      @training = Training.find(params[:id])
     end
-    
-    
+
     def new
       @training = current_benutzer.trainings.build
     end
-    
+
     def create
       @training = current_benutzer.trainings.build(training_params)
       if @training.save 
@@ -25,10 +24,10 @@ module Coach
         render :new
       end
     end
-  
+
     def edit
     end
-  
+
     def update
       if @training.update(training_params)
         redirect_to coach_trainings_path, notice: 'Training was successfully updated.'
@@ -37,28 +36,29 @@ module Coach
         render :edit
       end
     end
-  
+
     def destroy
       @training.destroy
       redirect_to coach_trainings_path, notice: 'Training was successfully destroyed.'
       Rails.logger.info "Training wurde gelöscht"
     end
-  
+
     private
-  
+
     def require_coach
       unless current_benutzer.coach?
         redirect_to root_path, alert: 'Access Denied.'
         Rails.logger.info "Sie haben keinen Zugriff"
       end
     end
-  
+
     def set_training
       @training = current_benutzer.trainings.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       redirect_to coach_trainings_path, alert: 'Training not found.'
       Rails.logger.info "Training nicht gefunden"
     end
+
     def training_params
       params.require(:training).permit(:title, :description)
     end
