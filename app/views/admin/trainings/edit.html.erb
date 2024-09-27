@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Edit Training</h1>
+
+  <%= render "form", training: @training %>
+
+  <div class="mt-4">
+    <%= link_to "Show this training", admin_training_path(@training), class: 'btn btn-info' %>
+    <%= link_to "Back to Trainings", admin_trainings_path, class: 'btn btn-primary' %>
+  </div>
+</div>

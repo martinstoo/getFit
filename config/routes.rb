@@ -1,6 +1,14 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get "activity_logs/index"
+  end
   namespace :student do
     resources:trainings, only: [:index, :show]
+  end
+  namespace :admin do
+    resources :activity_logs, only: [:index]
+    resources :trainings
+    resources :uebungs
   end
   namespace :coach do
     resources :trainings

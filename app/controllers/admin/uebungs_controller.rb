@@ -1,26 +1,26 @@
-module Coach
+module Admin
   class UebungsController < ApplicationController
     before_action :authenticate_benutzer!
-    before_action :require_coach 
+    before_action :authorize_admin!
     before_action :set_uebung, only: %i[show edit update destroy]
 
     def index
-      @uebungs = current_benutzer.uebungs
+      @uebungs = Uebung.all  # Fetch all exercises for admin
     end
 
     def show
     end
 
     def new
-      @uebung = current_benutzer.uebungs.build
+      @uebung = Uebung.new
     end
 
     def create
-      @uebung = current_benutzer.uebungs.build(uebung_params)
+      @uebung = Uebung.new(uebung_params)
       if @uebung.save
         current_benutzer.log_activity("Übung Created", "Title: #{@uebung.title}")  # Log the activity
         Rails.logger.info "Neues Übung wurde erstellt"
-        redirect_to coach_uebungs_path, notice: 'Uebung was successfully created.'
+        redirect_to admin_uebungs_path, notice: 'Übung was successfully created.'
       else
         render :new
       end
@@ -33,7 +33,7 @@ module Coach
       if @uebung.update(uebung_params)
         current_benutzer.log_activity("Übung Updated", "Title: #{@uebung.title}")  # Log the activity
         Rails.logger.info "Übung wurde aktualisiert"
-        redirect_to coach_uebungs_path, notice: 'Uebung was successfully updated.'
+        redirect_to admin_uebungs_path, notice: 'Übung was successfully updated.'
       else
         render :edit
       end
@@ -43,23 +43,20 @@ module Coach
       current_benutzer.log_activity("Übung Deleted", "Title: #{@uebung.title}")  # Log the activity
       @uebung.destroy
       Rails.logger.info "Übung wurde gelöscht"
-      redirect_to coach_uebungs_path, notice: 'Übung was successfully destroyed.'
+      redirect_to admin_uebungs_path, notice: 'Übung was successfully destroyed.'
     end
 
     private
 
-    def require_coach
-      unless current_benutzer.coach? || current_benutzer.admin?
-        Rails.logger.info "Sie haben keinen Zugriff"
-        redirect_to root_path, alert: 'Access Denied.'
-      end
+    def authorize_admin!
+      redirect_to root_path, alert: "You are not authorized to access this page." unless current_benutzer.admin?
     end
 
     def set_uebung
-      @uebung = current_benutzer.uebungs.find(params[:id])
+      @uebung = Uebung.find(params[:id])
     rescue ActiveRecord::RecordNotFound
       Rails.logger.info "Übung nicht gefunden"
-      redirect_to coach_uebungs_path, alert: 'Übung not found.'
+      redirect_to admin_uebungs_path, alert: 'Übung not found.'
     end
 
     def uebung_params

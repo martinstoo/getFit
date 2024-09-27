@@ -10,7 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_09_26_070329) do
+ActiveRecord::Schema[7.2].define(version: 2024_09_27_132142) do
+  create_table "activity_logs", force: :cascade do |t|
+    t.integer "benutzer_id", null: false
+    t.string "action"
+    t.text "details"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["benutzer_id"], name: "index_activity_logs_on_benutzer_id"
+  end
+
   create_table "benutzers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -55,6 +64,7 @@ ActiveRecord::Schema[7.2].define(version: 2024_09_26_070329) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "activity_logs", "benutzers"
   add_foreign_key "trainings", "benutzers"
   add_foreign_key "uebungs", "benutzers"
 end

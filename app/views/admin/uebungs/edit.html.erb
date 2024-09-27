@@ -1,0 +1,10 @@
+<div class="container">
+  <h1>Edit Übung</h1>
+
+  <%= render "form", uebung: @uebung %>
+
+  <div class="mt-4">
+    <%= link_to "Show this Übung", admin_uebung_path(@uebung), class: 'btn btn-info' %>
+    <%= link_to "Back to Uebungs", admin_uebungs_path, class: 'btn btn-primary' %>
+  </div>
+</div>

@@ -4,9 +4,17 @@
     <div class="card-body">
       <h2 class="card-title">Choose your option</h2>
       <div class="button-group mt-4">
-        <%= link_to 'Student', '/student/trainings', class: 'btn btn-primary' %>
-        <%= link_to 'Trainings', '/coach/trainings', class: 'btn btn-info' %>
-        <%= link_to 'Übungen', '/coach/uebungs', class: 'btn btn-warning' %>
+        <% if current_benutzer.admin? %>
+          <%= link_to 'Activity Log', '/admin/activity_logs', class: 'btn btn-info' %>
+          <%= link_to 'Manage Trainings', admin_trainings_path, class: 'btn btn-primary' %>
+          <%= link_to 'Manage Uebungs', admin_uebungs_path, class: 'btn btn-primary' %>
+
+        <% elsif current_benutzer.coach? %>
+          <%= link_to 'View My Trainings', '/coach/trainings', class: 'btn btn-info' %>
+          <%= link_to 'View My Übungen', '/coach/uebungs', class: 'btn btn-warning' %>
+        <% elsif current_benutzer.student? %>
+          <%= link_to 'View Existing Trainings and Übungen', '/student/trainings', class: 'btn btn-primary' %>
+        <% end %>
       </div>
       <div class="mt-4">
         <%= button_to 'Logout', destroy_benutzer_session_path, method: :delete, class: 'btn btn-danger' %>
